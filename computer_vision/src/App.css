@@ -75,3 +75,57 @@ ul {
 .logo:hover{
   cursor:pointer;
 }
+
+
+button {
+  border-radius: 25px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 900;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  
+
+  
+}
+
+
+.button-group{
+
+
+  padding-left: 40.2%;
+  height: 100px;
+  background-color: black;
+}
+
+
+
+.button-group button{
+  font-weight: bold;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 1; 
+  justify-content: center;
+}
+
+.button1{
+  background-color: green;
+}
+
+.button1:hover{
+  background-color: #5fb95f;
+
+}
+
+.button2{
+  background-color: red;
+}
+
+
+.button2:hover{
+  background-color: #FF474C;
+}
