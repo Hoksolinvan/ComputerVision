@@ -14,7 +14,7 @@ app = FastAPI()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://computer-vision-m8mtf7tz7-hoksolinvan-chhuns-projects.vercel.app"],  # React app URL
+    allow_origins=["*"],  # React app URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
