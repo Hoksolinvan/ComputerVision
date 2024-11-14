@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [ocrText, setOcrText] = useState(''); // New state to store OCR output
 
   const onDrop = useCallback((acceptedFiles) => {
     if (!acceptedFiles || acceptedFiles.length === 0) {
@@ -29,14 +30,16 @@ function App() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('Response:', response.data); // Log or handle the response data
+      setOcrText(response.data.extracted_text); // Update OCR output with the response
     } catch (error) {
       console.error('Error uploading file:', error);
+      setOcrText('Error processing the file.'); // Display error message
     }
   };
 
   const handleDelete = () => {
     setSelectedFile(null); // Clear the selected file
+    setOcrText(''); // Clear OCR output
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -49,7 +52,7 @@ function App() {
 
       <div className="flex">
         <div {...getRootProps()} className="flex-row-1">
-          <input {...getInputProps()} accept=".jpeg, .jpg, .png, .exr"  />
+          <input {...getInputProps()} accept=".jpeg, .jpg, .png, .exr" />
           {isDragActive ? (
             <p>Drop Your File Here!</p>
           ) : (
@@ -59,7 +62,7 @@ function App() {
           <div style={{ fontFamily: 'monospace', fontSize: '16px', fontWeight: 900 }}>
             <h4>Selected File:</h4>
             {selectedFile ? (
-              <p>{selectedFile.path} - {selectedFile.size} bytes</p>
+              <p>{selectedFile.name} - {selectedFile.size} bytes</p>
             ) : (
               <p>No file selected.</p>
             )}
@@ -67,7 +70,8 @@ function App() {
         </div>
 
         <div className="flex-row-2">
-          OCR Output
+          <h4>OCR Output:</h4>
+          <p>{ocrText || 'No OCR output yet.'}</p> {/* Display OCR output here */}
         </div>
       </div>
 
